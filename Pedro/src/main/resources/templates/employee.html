@@ -13,11 +13,11 @@
     </div>
     <h2 th:text="#{employee.modify.header}">Modify Employee</h2>
     <div>
-        <form th:action="@{/mod/{id}(id=${employee.id})}" th:object="${employee}" method="post">
+        <form th:action="@{/employees/mod/{id}(id=${employee.id})}" th:object="${employee}" method="post">
             <input type="hidden" th:field="*{id}" />
-            <label for="name" th:text="#{employee.name}">Name</label>
+            <label for="name" th:text="#{employees.name.label}">Name</label>
             <input type="text" id="name" th:field="*{name}" />
-            <label for="state" th:text="#{employee.state}">State</label>
+            <label for="state" th:text="#{employee.state.label}">State</label>
             <select id="state" th:field="*{state}">
                 <option th:each="eachstate : ${states}" th:value="${eachstate}" th:selected="${employee.state == eachstate}" th:text="${eachstate}"></option>
             </select>

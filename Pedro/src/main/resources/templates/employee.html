@@ -14,13 +14,20 @@
 	<h2 th:text="#{employee.modify.header}"></h2>
 	<div>
 		<form action="#" th:action="@{/mod/${employee.id}" th:object="${employee}" method="post">
-	    	<<label for="name" th:text="#{employee.name}"/> 
+	    	<input type="hidden" th:field="*{id}" />
+	    	<label for="name" th:text="#{employee.name}"/>
     		<input type="text" th:field="*{name}" />
-    		<label for="state" th:text="#{employee.state}"/> 
+    		<label for="state" th:text="#{employee.state}"/>
     		<select th:field="*{state}">
     	  		<option th:each="eachstate:${states}" th:field="*{state}" th:value="${eachstate}"th:selected="${state==eachstate}" th:text="${eachstate}"/>
     		</select>
-	        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+	        <p><input type="submit" value="Submit" /></p>
+	    </form>
+	</div>
+	<div>
+		<h2 th:text="#{employee.header.delete}"></h2>
+		<form action="#" th:action="@{/d/${employee.id}" th:object="${employee}" method="get">
+	        <p><input type="submit" value="Delete" /></p>
 	    </form>
 	</div>
 	<h2> <a  th:href="@{/employees}" th:text="#{employee.employees.link}"></a></h2>

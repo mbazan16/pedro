@@ -7,7 +7,7 @@ import com.examen.demo.entities.Employee;
 
 public interface IEmployeesService {
 
-	public List<Employee> listAll() throws ServiceException;
+	public List<Employee> searchEmployees(String name) throws ServiceException;
 
 	public Employee getEmployee(Integer id) throws ServiceException;
 

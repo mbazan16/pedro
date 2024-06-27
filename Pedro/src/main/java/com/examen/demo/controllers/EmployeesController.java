@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.examen.demo.common.EmployeeState;
 import com.examen.demo.common.exceptions.ServiceException;
@@ -26,11 +27,11 @@ public class EmployeesController {
 	IEmployeesService service;
 	
 	@GetMapping
-	public String listEmployees(Model model) throws ServiceException {
-		log.info("[listEmployees]");
-		
+	public String searchEmployees(Model model,@RequestParam(name="name", required=false) String name) throws ServiceException {
+		log.info("[searchEmployees]");
+		log.debug("["+"Name: "+name+"]");
 		try {
-			List<Employee> employees = service.listAll();
+			List<Employee> employees = service.searchEmployees(name);
 			model.addAttribute("employees",employees);
 		} catch (ServiceException se) {
 			model.addAttribute("error",true);
@@ -54,8 +55,7 @@ public class EmployeesController {
 		log.info("[addEmployee]");
 		log.debug("["+"Employee: "+employee.toString()+"]");
 		
-		employee = service.save(employee);
-		model.addAttribute(employee);
+		service.save(employee);
 		return "employees";
 	}
 	

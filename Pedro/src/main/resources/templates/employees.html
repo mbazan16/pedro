@@ -6,6 +6,13 @@
 </head>
 <body>
 	<h2 th:text="#{employees.list.header}"></h2>
+	<div>
+		<form action="#" th:action="@{/employees}" method="get">
+			<label for="name">Name:</label>
+			<input th:param="@{/employees+${name}}" type="text" id="name" name="name" />
+			<input type="submit" value="search">
+		</form>
+	</div>
     <div th:if="${error}">
         <p th:text="#{employees.error.noElements}"></p>
     </div>
@@ -13,16 +20,17 @@
 		<ul>
 			<li th:each="employee:${employees}">
  				<span th:text="${employee.name}"></span>
-    			<a  th:href="@{'/employee/'+${employee.id}}" th:text="#{employees.details.link}"></a>
+    			<a th:href="@{'/employees/'+${employee.id}}"> <p>see</p> </a>
  			</li>
 		</ul>
 	</div>
 	<h2 th:text="#{employees.add.header}"></h2>
 	<div>
 		<form action="#" th:action="@{/employees}"  method="post">
-			<label for="name" th:text="#{employee.name}"/> 
+			<label for="name" th:text="#{employees.name.label}"/> 
     		<input type="text" id="name" name="name" />   
-    		<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    		<p><input type="submit" value="Submit" /></p>
+    		<!--  <p th:onsubmit>Employee created successfully</p>-->
     	</form>
 	</div>
 </body>

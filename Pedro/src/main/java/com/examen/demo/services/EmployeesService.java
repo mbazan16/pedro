@@ -1,5 +1,6 @@
 package com.examen.demo.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,12 +23,13 @@ public class EmployeesService implements IEmployeesService{
 	EmployeeRepository repository;
 	
 	@Override
-	public List<Employee> listAll() throws ServiceException{
+	public List<Employee> searchEmployees(String name) throws ServiceException{
 		log.info("[listEmployees]");
 		
-		List<Employee> employees = null;
+		List<Employee> employees = new ArrayList<Employee>();
 		try {
-			employees = repository.findAll();
+			name.trim().toUpperCase();
+			employees = repository.findByName(name);
 			if(employees.isEmpty()) throw new ServiceException(CodeErrors.EMPLOYEES_NO_ELEMENTS_FOUND);
 			
 		} catch(ServiceException se) {

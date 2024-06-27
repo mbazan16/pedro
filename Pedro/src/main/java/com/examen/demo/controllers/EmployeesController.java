@@ -56,6 +56,7 @@ public class EmployeesController {
 		log.debug("["+"Employee: "+employee.toString()+"]");
 		
 		service.save(employee);
+		log.debug("["+"Employee: "+employee.toString()+"]");
 		return "employees";
 	}
 	

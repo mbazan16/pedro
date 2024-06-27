@@ -28,7 +28,7 @@ public class EmployeeRepositoryTests {
 		emp1.setName("pepe");
 		emp1.setState(EmployeeState.EMPLOYED);
 		Employee emp2= new Employee();
-		emp2.setName("pepa");
+		emp2.setName("pepe");
 		emp2.setState(EmployeeState.EMPLOYED);
 		Employee emp3= new Employee();
 		emp3.setName("ramon");

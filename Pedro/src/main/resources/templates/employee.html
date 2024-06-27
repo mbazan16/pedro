@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="ISO-8859-1">
-	<title th:text="#{employee.title}"></title>
+    <meta charset="ISO-8859-1">
+    <title th:text="#{employee.title}">Employee Details</title>
 </head>
 <body>
-	<h2 th:text="#{employee.header}"></h2>
-	<div>
-		<p>Id: <span th:text="${employee.id}"></span></p>
-		<p>Name: <span th:text="${employee.name}"></span></p>
-		<p>State: <span th:text="${employee.state}"></span></p>
-	</div>
-	<h2 th:text="#{employee.modify.header}"></h2>
-	<div>
-		<form action="#" th:action="@{/mod/${employee.id}" th:object="${employee}" method="post">
-	    	<input type="hidden" th:field="*{id}" />
-	    	<label for="name" th:text="#{employee.name}"/>
-    		<input type="text" th:field="*{name}" />
-    		<label for="state" th:text="#{employee.state}"/>
-    		<select th:field="*{state}">
-    	  		<option th:each="eachstate:${states}" th:field="*{state}" th:value="${eachstate}"th:selected="${state==eachstate}" th:text="${eachstate}"/>
-    		</select>
-	        <p><input type="submit" value="Submit" /></p>
-	    </form>
-	</div>
-	<div>
-		<h2 th:text="#{employee.header.delete}"></h2>
-		<form action="#" th:action="@{/d/${employee.id}" th:object="${employee}" method="get">
-	        <p><input type="submit" value="Delete" /></p>
-	    </form>
-	</div>
-	<h2> <a  th:href="@{/employees}" th:text="#{employee.employees.link}"></a></h2>
+    <h2 th:text="#{employee.header}">Employee Details</h2>
+    <div>
+        <p>Id: <span th:text="${employee.id}">[ID]</span></p>
+        <p>Name: <span th:text="${employee.name}">[Name]</span></p>
+        <p>State: <span th:text="${employee.state}">[State]</span></p>
+    </div>
+    <h2 th:text="#{employee.modify.header}">Modify Employee</h2>
+    <div>
+        <form th:action="@{/mod/{id}(id=${employee.id})}" th:object="${employee}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <label for="name" th:text="#{employee.name}">Name</label>
+            <input type="text" id="name" th:field="*{name}" />
+            <label for="state" th:text="#{employee.state}">State</label>
+            <select id="state" th:field="*{state}">
+                <option th:each="eachstate : ${states}" th:value="${eachstate}" th:selected="${employee.state == eachstate}" th:text="${eachstate}"></option>
+            </select>
+            <p><input type="submit" value="Submit" /></p>
+        </form>
+    </div>
+    <div>
+        <h2 th:text="#{employee.header.delete}">Delete Employee</h2>
+        <form th:action="@{/d/{id}(id=${employee.id})}" method="get">
+            <p><input type="submit" value="Delete" /></p>
+        </form>
+    </div>
+    <h2><a th:href="@{/employees}" th:text="#{employee.employees.link}">Back to Employees List</a></h2>
 </body>
 </html>

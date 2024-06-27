@@ -18,6 +18,7 @@ public class Employee {
 	private int id;
 	
 	private String name;
+	
 	@Enumerated(EnumType.ORDINAL)
 	private EmployeeState state;
 	

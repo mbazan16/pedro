@@ -1,7 +1,7 @@
 package com.examen.demo.common;
 
 public enum EmployeeState {
-	WORKING,
+	EMPLOYED,
 	FIRED,
 	VACATION
 }

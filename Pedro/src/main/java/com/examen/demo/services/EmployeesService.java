@@ -28,13 +28,11 @@ public class EmployeesService implements IEmployeesService{
 		
 		List<Employee> employees = new ArrayList<Employee>();
 		try {
+			if(name==null) return repository.findAll();
 			name.trim().toUpperCase();
 			employees = repository.findByName(name);
-			if(employees.isEmpty()) throw new ServiceException(CodeErrors.EMPLOYEES_NO_ELEMENTS_FOUND);
+			if(employees.isEmpty()) return repository.findAll();
 			
-		} catch(ServiceException se) {
-			log.error("ServiceException",se);
-			throw se;
 		} catch(Exception e) {
 			log.error("Exception",e);
 			throw new ServiceException(CodeErrors.ERROR_GENERAL);
